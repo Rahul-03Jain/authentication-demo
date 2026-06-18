@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "6a32e6ae87f55ccad4fc6d73",
+    "fullName": "Eeshaan Singh",
+    "email": "eeshaan635741@gmail.com",
+    "password": "$2a$12$vkwvnNRXxX7waGlkvbQQrOYxMBC062eySmvoVdnnRSqDtxPw99Tqa",
+    "role": "user",
+    "isDisabled": false,
+    "createdAt": "2026-06-17T18:25:50.761Z",
+    "updatedAt": "2026-06-17T18:28:26.179Z",
+    "lastLogin": "2026-06-17T18:28:26.179Z"
+  }
+]

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In - Secure User Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="bg-[#0b0f19] min-h-screen flex items-center justify-center p-4">
+    <main class="w-full max-w-md glass-card rounded-2xl p-8 animate-fade-in-up">
+      
+      <!-- STEP 1: LOGIN CREDENTIALS -->
+      <div id="login-credentials-step">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-4 border border-indigo-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-extrabold text-white tracking-tight">Welcome Back</h1>
+          <p class="text-slate-400 mt-2 text-sm">Sign in to your personal dashboard</p>
+        </div>
+
+        <form id="login-form" class="space-y-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">Email Address</label>
+            <input id="email" name="email" type="email" autocomplete="email" required
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+          </div>
+
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label for="password" class="block text-sm font-medium text-slate-300">Password</label>
+            </div>
+            <input id="password" name="password" type="password" autocomplete="current-password" required
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/50 flex items-center justify-center gap-2">
+            <span>Sign In</span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center space-y-3">
+          <p class="text-sm text-slate-400">
+            New here? <a href="/signup" class="text-indigo-400 hover:text-indigo-300 font-medium hover:underline transition-colors">Create an account</a>
+          </p>
+          <p class="text-xs text-slate-500">
+            Are you an admin? <a href="/admin-login" class="text-slate-400 hover:text-slate-300 font-medium hover:underline transition-colors">Admin Portal</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 2: MFA SETUP (FIRST LOGIN FOR ADMIN-CREATED USERS) -->
+      <div id="login-mfa-setup-step" class="hidden">
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-4 border border-indigo-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 class="text-2xl font-extrabold text-white tracking-tight">Setup MFA</h1>
+          <p class="text-slate-400 mt-1.5 text-xs">Scan this QR code with Google Authenticator</p>
+        </div>
+
+        <div class="flex flex-col items-center mb-6">
+          <div class="p-3 bg-white rounded-2xl shadow-inner border border-slate-850">
+            <img id="login-qr-img" src="" alt="MFA QR Code" class="w-44 h-44">
+          </div>
+          <p class="text-xs text-slate-500 mt-2 text-center max-w-[280px]">
+            Scan with Authenticator, then enter the 6-digit code below to enable.
+          </p>
+        </div>
+
+        <form id="login-mfa-setup-form" class="space-y-5">
+          <div>
+            <label for="login-setup-code" class="block text-sm font-medium text-slate-300 mb-1.5">Authenticator Code</label>
+            <input id="login-setup-code" name="code" type="text" pattern="\d{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000 000"
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-650 tracking-[0.5em] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+          </div>
+
+          <button type="submit" id="login-setup-submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/50 flex items-center justify-center gap-2">
+            <span>Verify & Enable</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 3: MFA CHALLENGE (SUBSEQUENT LOGINS) -->
+      <div id="login-mfa-step" class="hidden">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-4 border border-indigo-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-extrabold text-white tracking-tight">MFA Challenge</h1>
+          <p class="text-slate-400 mt-2 text-sm">Enter your 6-digit Google Authenticator code</p>
+        </div>
+
+        <form id="login-mfa-form" class="space-y-6">
+          <div>
+            <label for="code" class="block text-sm font-medium text-slate-300 mb-1.5">Authenticator Code</label>
+            <input id="code" name="code" type="text" pattern="\d{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000 000"
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-600 tracking-[0.5em] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+          </div>
+
+          <button type="submit" id="mfa-submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/50 flex items-center justify-center gap-2">
+            <span>Verify & Enter</span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+          <p class="text-sm text-slate-400">
+            Having trouble? <a href="/login" class="text-indigo-400 hover:text-indigo-300 font-medium hover:underline transition-colors">Go back</a>
+          </p>
+        </div>
+      </div>
+
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

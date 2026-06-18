@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - Member Area</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="bg-[#0b0f19] min-h-screen flex flex-col">
+    <!-- Topbar Header -->
+    <header class="glass-panel border-b border-slate-800 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-white text-lg tracking-tight">System Portal</span>
+            <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">User Zone</span>
+          </div>
+        </div>
+        
+        <button data-logout class="px-4 py-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 transition-all text-sm font-medium focus:outline-none focus:ring-2 focus:ring-slate-500/50 flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Profile Panel -->
+        <section class="glass-card rounded-2xl p-6 md:col-span-1 h-fit">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-white text-xl font-bold border-2 border-indigo-500/30 shadow-lg shadow-indigo-500/20" id="profile-avatar">
+              U
+            </div>
+            <div>
+              <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400">My Profile</h2>
+              <div class="text-xl font-extrabold text-white mt-0.5 truncate" data-profile-name>Loading Profile...</div>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-slate-800 space-y-3">
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-slate-400">Account Role</span>
+              <span class="font-medium text-indigo-300">Standard User</span>
+            </div>
+            <div class="flex justify-between items-center text-sm">
+              <span class="text-slate-400">Status</span>
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Active
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Registered Users Panel -->
+        <section class="glass-card rounded-2xl p-6 md:col-span-2 flex flex-col">
+          <div class="border-b border-slate-800 pb-4 mb-4">
+            <h2 class="text-lg font-bold text-white flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+              </svg>
+              Registered Members
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">To protect privacy, only names are visible within the system directory.</p>
+          </div>
+
+          <!-- Users List -->
+          <div class="flex-grow">
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3" data-user-list>
+              <!-- Populated dynamically -->
+              <li class="col-span-full py-8 text-center text-slate-500">
+                <div class="spinner mx-auto mb-3"></div>
+                Loading registered members...
+              </li>
+            </ul>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

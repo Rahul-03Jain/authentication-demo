@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="bg-[#0b0f19] min-h-screen flex flex-col">
+    <!-- Header Navbar -->
+    <header class="glass-panel border-b border-slate-800 sticky top-0 z-40 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-400 border border-rose-500/20 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M2.166 4.9L10 1.154l7.834 3.746A1 1 0 0118.5 5.8v6.284a1 1 0 01-.618.916L10 18.846l-7.882-3.846A1 1 0 011.5 14.084V5.8a1 1 0 01.666-.9zM9 9a1 1 0 000 2h2a1 1 0 000-2H9z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <span class="font-extrabold text-white text-lg tracking-tight">System Control</span>
+            <span class="ml-2 text-xs font-semibold px-2 py-0.5 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Admin Panel</span>
+          </div>
+        </div>
+        
+        <button data-logout class="px-4 py-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 hover:bg-slate-800 border border-slate-700/50 transition-all text-sm font-medium focus:outline-none focus:ring-2 focus:ring-slate-500/50 flex items-center gap-1.5">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up">
+      
+      <!-- Stats Row -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <!-- Card 1: Users -->
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-indigo-500 flex justify-between items-center">
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Users</p>
+            <h3 class="text-2xl font-extrabold text-white mt-1.5" data-stat-total-users>0</h3>
+          </div>
+          <div class="p-3 bg-indigo-500/10 rounded-xl text-indigo-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Admins -->
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-violet-500 flex justify-between items-center">
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Admins</p>
+            <h3 class="text-2xl font-extrabold text-white mt-1.5" data-stat-total-admins>0</h3>
+          </div>
+          <div class="p-3 bg-violet-500/10 rounded-xl text-violet-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 3: Active -->
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-emerald-500 flex justify-between items-center">
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Accounts</p>
+            <h3 class="text-2xl font-extrabold text-white mt-1.5" data-stat-active-users>0</h3>
+          </div>
+          <div class="p-3 bg-emerald-500/10 rounded-xl text-emerald-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 4: Disabled -->
+        <div class="glass-card rounded-2xl p-5 border-l-4 border-rose-500 flex justify-between items-center">
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Disabled Accounts</p>
+            <h3 class="text-2xl font-extrabold text-white mt-1.5" data-stat-disabled-users>0</h3>
+          </div>
+          <div class="p-3 bg-rose-500/10 rounded-xl text-rose-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls Panel -->
+      <section class="glass-card rounded-2xl p-6 mb-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <!-- Search & Filters -->
+          <div class="flex flex-col sm:flex-row gap-3 flex-grow max-w-3xl">
+            <div class="relative flex-grow">
+              <input type="text" id="search-input" placeholder="Search by name or email..."
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all text-sm">
+              <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </div>
+            </div>
+            
+            <div class="flex gap-3">
+              <select id="role-filter"
+                class="px-4 py-2.5 rounded-xl bg-slate-900/50 border border-slate-700/50 text-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all text-sm cursor-pointer">
+                <option value="all">All Roles</option>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+              
+              <select id="status-filter"
+                class="px-4 py-2.5 rounded-xl bg-slate-900/50 border border-slate-700/50 text-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all text-sm cursor-pointer">
+                <option value="all">All Statuses</option>
+                <option value="active">Active</option>
+                <option value="disabled">Disabled</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="flex gap-3 shrink-0">
+            <button type="button" id="open-create-user"
+              class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 hover:text-white font-medium transition-all text-sm flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+              </svg>
+              Create User
+            </button>
+            
+            <button type="button" id="open-create-admin"
+              class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold transition-all text-sm shadow-md shadow-rose-500/10 flex items-center gap-1.5">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M2.166 4.9L10 1.154l7.834 3.746A1 1 0 0118.5 5.8v6.284a1 1 0 01-.618.916L10 18.846l-7.882-3.846A1 1 0 011.5 14.084V5.8a1 1 0 01.666-.9zM9 9a1 1 0 000 2h2a1 1 0 000-2H9z" clip-rule="evenodd" />
+              </svg>
+              Create Admin
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Table Panel -->
+      <section class="glass-card rounded-2xl overflow-hidden mb-6">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-900/40 border-b border-slate-800 text-slate-400 text-xs uppercase font-bold tracking-wider">
+                <th class="py-4 px-6">Full Name</th>
+                <th class="py-4 px-6">Email Address</th>
+                <th class="py-4 px-6">Role</th>
+                <th class="py-4 px-6">Created Date</th>
+                <th class="py-4 px-6">Last Login</th>
+                <th class="py-4 px-6">Status</th>
+                <th class="py-4 px-6 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody data-admin-users class="divide-y divide-slate-800/50 text-sm text-slate-300">
+              <!-- Dynamically populated -->
+              <tr>
+                <td colspan="7" class="py-12 text-center text-slate-500">
+                  <div class="spinner mx-auto mb-3"></div>
+                  Fetching directory records...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Pagination Footer -->
+        <div class="bg-slate-900/20 border-t border-slate-850 px-6 py-4 flex items-center justify-between gap-4">
+          <div class="text-xs text-slate-400" id="pagination-info">
+            Showing <span class="font-semibold text-white">0</span> to <span class="font-semibold text-white">0</span> of <span class="font-semibold text-white">0</span> records
+          </div>
+          <div class="flex gap-2">
+            <button type="button" id="prev-page-btn" disabled
+              class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-850 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition-all text-xs font-semibold flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Previous
+            </button>
+            <button type="button" id="next-page-btn" disabled
+              class="px-3 py-1.5 rounded-lg border border-slate-700 bg-slate-850 text-slate-400 hover:text-white disabled:opacity-30 disabled:hover:text-slate-400 transition-all text-xs font-semibold flex items-center gap-1">
+              Next
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Create User Modal -->
+    <div id="create-user-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+      <div class="fixed inset-0 modal-backdrop transition-opacity" id="close-user-modal-bg"></div>
+      
+      <div class="relative glass-card w-full max-w-md rounded-2xl p-6 overflow-hidden z-10">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+          <h3 class="text-lg font-bold text-white">Create New User</h3>
+          <button type="button" class="text-slate-400 hover:text-white" id="close-user-modal-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        
+        <form id="create-user-form" class="space-y-4">
+          <div>
+            <label for="cu-fullName" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Full Name</label>
+            <input type="text" id="cu-fullName" name="fullName" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div>
+            <label for="cu-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Email Address</label>
+            <input type="email" id="cu-email" name="email" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div>
+            <label for="cu-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Password</label>
+            <input type="password" id="cu-password" name="password" minlength="8" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div class="pt-4 flex justify-end gap-3 border-t border-slate-800">
+            <button type="button" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors text-sm font-medium" id="cancel-user-modal">Cancel</button>
+            <button type="submit" class="px-5 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold shadow-md shadow-rose-500/20 text-sm">Save User</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create Admin Modal -->
+    <div id="create-admin-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+      <div class="fixed inset-0 modal-backdrop transition-opacity" id="close-admin-modal-bg"></div>
+      
+      <div class="relative glass-card w-full max-w-md rounded-2xl p-6 overflow-hidden z-10">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+          <h3 class="text-lg font-bold text-white flex items-center gap-1.5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 text-rose-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M2.166 4.9L10 1.154l7.834 3.746A1 1 0 0118.5 5.8v6.284a1 1 0 01-.618.916L10 18.846l-7.882-3.846A1 1 0 011.5 14.084V5.8a1 1 0 01.666-.9zM9 9a1 1 0 000 2h2a1 1 0 000-2H9z" clip-rule="evenodd" />
+            </svg>
+            Create New Admin
+          </h3>
+          <button type="button" class="text-slate-400 hover:text-white" id="close-admin-modal-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        
+        <form id="create-admin-form" class="space-y-4">
+          <div>
+            <label for="ca-fullName" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Full Name</label>
+            <input type="text" id="ca-fullName" name="fullName" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div>
+            <label for="ca-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Email Address</label>
+            <input type="email" id="ca-email" name="email" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div>
+            <label for="ca-password" class="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1">Password</label>
+            <input type="password" id="ca-password" name="password" minlength="8" required
+              class="w-full px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-700/50 text-white focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 text-sm">
+          </div>
+          <div class="pt-4 flex justify-end gap-3 border-t border-slate-800">
+            <button type="button" class="px-4 py-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/50 transition-colors text-sm font-medium" id="cancel-admin-modal">Cancel</button>
+            <button type="submit" class="px-5 py-2 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-semibold shadow-md shadow-rose-500/20 text-sm">Save Admin</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

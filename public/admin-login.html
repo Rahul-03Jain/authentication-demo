@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Portal - Sign In</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="bg-[#0b0f19] min-h-screen flex items-center justify-center p-4">
+    <main class="w-full max-w-md glass-card rounded-2xl p-8 animate-fade-in-up">
+      
+      <!-- STEP 1: ADMIN LOGIN CREDENTIALS -->
+      <div id="admin-credentials-step">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 mb-4 border border-rose-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-extrabold text-white tracking-tight">Admin Console</h1>
+          <p class="text-slate-400 mt-2 text-sm">Authorized administrative access only</p>
+        </div>
+
+        <form id="admin-login-form" class="space-y-6">
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-300 mb-1.5">Admin Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all">
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-slate-300 mb-1.5">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all">
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-rose-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-rose-500/50 flex items-center justify-center gap-2">
+            <span>Enter Console</span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+          <p class="text-sm text-slate-400">
+            Regular user? <a href="/login" class="text-indigo-400 hover:text-indigo-300 font-medium hover:underline transition-colors">User Sign In</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 2: ADMIN MFA SETUP (FIRST LOGIN) -->
+      <div id="admin-mfa-setup-step" class="hidden">
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 mb-4 border border-rose-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 class="text-2xl font-extrabold text-white tracking-tight">Setup Admin MFA</h1>
+          <p class="text-slate-400 mt-1.5 text-xs">Scan this QR code with Google Authenticator</p>
+        </div>
+
+        <div class="flex flex-col items-center mb-6">
+          <div class="p-3 bg-white rounded-2xl shadow-inner border border-rose-500/20">
+            <img id="admin-qr-img" src="" alt="MFA QR Code" class="w-44 h-44">
+          </div>
+          <p class="text-xs text-slate-500 mt-2 text-center max-w-[280px]">
+            Scan with Authenticator, then enter the 6-digit code below to enable.
+          </p>
+        </div>
+
+        <form id="admin-mfa-setup-form" class="space-y-5">
+          <div>
+            <label for="admin-setup-code" class="block text-sm font-medium text-slate-300 mb-1.5">Authenticator Code</label>
+            <input id="admin-setup-code" name="code" type="text" pattern="\d{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000 000"
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-650 tracking-[0.5em] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all">
+          </div>
+
+          <button type="submit" id="admin-setup-submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-rose-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-rose-500/50 flex items-center justify-center gap-2">
+            <span>Verify & Enable</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- STEP 3: ADMIN MFA CHALLENGE (SUBSEQUENT LOGINS) -->
+      <div id="admin-mfa-challenge-step" class="hidden">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-rose-500/10 text-rose-400 mb-4 border border-rose-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h1 class="text-3xl font-extrabold text-white tracking-tight">MFA Challenge</h1>
+          <p class="text-slate-400 mt-2 text-sm">Enter your 6-digit Google Authenticator code</p>
+        </div>
+
+        <form id="admin-mfa-challenge-form" class="space-y-6">
+          <div>
+            <label for="admin-code" class="block text-sm font-medium text-slate-300 mb-1.5">Authenticator Code</label>
+            <input id="admin-code" name="code" type="text" pattern="\d{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000 000"
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-650 tracking-[0.5em] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500 transition-all">
+          </div>
+
+          <button type="submit" id="admin-challenge-submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-semibold shadow-lg shadow-rose-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-rose-500/50 flex items-center justify-center gap-2">
+            <span>Verify & Enter</span>
+          </button>
+        </form>
+
+        <div class="mt-8 pt-6 border-t border-slate-800 text-center">
+          <p class="text-sm text-slate-400">
+            Having trouble? <a href="/admin-login" class="text-rose-400 hover:text-rose-350 font-medium hover:underline transition-colors">Go back</a>
+          </p>
+        </div>
+      </div>
+
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

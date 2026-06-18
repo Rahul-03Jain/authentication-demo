@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Setup MFA - Secure Account</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body class="bg-[#0b0f19] min-h-screen flex items-center justify-center p-4">
+    <main class="w-full max-w-md glass-card rounded-2xl p-8 animate-fade-in-up">
+      <div id="mfa-setup-container">
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-400 mb-4 border border-indigo-500/20">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h1 class="text-2xl font-extrabold text-white tracking-tight">Enable MFA</h1>
+          <p class="text-slate-400 mt-1.5 text-xs">Protect your account with Google Authenticator</p>
+        </div>
+
+        <!-- QR Code Display -->
+        <div class="flex flex-col items-center mb-6">
+          <div class="p-3 bg-white rounded-2xl shadow-inner border border-slate-200">
+            <img id="mfa-qr-img" src="" alt="MFA QR Code" class="w-44 h-44">
+          </div>
+          <p class="text-xs text-slate-400 mt-3 text-center max-w-[280px]">
+            Scan this image with your authenticator app, or copy the manual key below.
+          </p>
+        </div>
+
+        <!-- Fallback Manual Secret -->
+        <div class="mb-6">
+          <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2 text-center">Manual Secret Key</label>
+          <div class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-900/60 border border-slate-800/80">
+            <code id="mfa-manual-secret" class="flex-1 font-mono text-center text-sm font-semibold text-indigo-400 select-all truncate uppercase tracking-widest">LOADING...</code>
+            <button id="copy-secret-btn" type="button" class="p-2 rounded-lg bg-slate-800/60 hover:bg-slate-700/60 text-slate-400 hover:text-white transition-colors" title="Copy Secret Key">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Code verification form -->
+        <form id="mfa-setup-form" class="space-y-5">
+          <div>
+            <label for="mfa-setup-code" class="block text-sm font-medium text-slate-350 mb-1.5">Authenticator Code</label>
+            <input id="mfa-setup-code" name="code" type="text" pattern="\d{6}" maxlength="6" required autocomplete="one-time-code" placeholder="000 000"
+              class="w-full px-4 py-3 rounded-xl bg-slate-900/50 border border-slate-700/50 text-white placeholder-slate-650 tracking-[0.5em] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+          </div>
+
+          <button type="submit" id="mfa-setup-submit-btn"
+            class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white font-semibold shadow-lg shadow-indigo-500/20 transition-all focus:outline-none focus:ring-2 focus:ring-indigo-500/50 flex items-center justify-center gap-2">
+            <span>Verify & Enable</span>
+          </button>
+        </form>
+
+        <div class="mt-6 pt-5 border-t border-slate-800 text-center">
+          <p class="text-xs text-slate-500">
+            Back to <a href="/login" class="text-indigo-400 hover:text-indigo-300 hover:underline transition-colors font-medium">User Login</a>
+          </p>
+        </div>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
